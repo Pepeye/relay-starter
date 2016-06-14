@@ -1,0 +1,25 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "standard",
+    "standard-react"
+  ],
+  "env": {
+    "browser": true,
+    "mocha" : true
+  },
+  "globals" : {
+    "Action"       : false,
+    "__DEV__"      : false,
+    "__PROD__"     : false,
+    "__DEBUG__"    : false,
+    "__DEBUG_NEW_WINDOW__" : false,
+    "__BASENAME__" : false
+  },
+  "rules": {
+    "semi" : [2, "never"],
+    "space-infix-ops": 0,
+    space-before-function-paren: [2, { "anonymous": "never", "named": "always" }],
+    "max-len": [1, 120, 2, {ignoreComments: true}],
+  }
+}

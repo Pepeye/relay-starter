@@ -1,0 +1,150 @@
+{
+  "name": "relay-starter",
+  "version": "0.0.1",
+  "description": "Relay/GraphQL Starter",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "npm run schema && better-npm-run dev",
+    "build": "npm run clean && npm run build:app && npm run build:server",
+    "build:app": "better-npm-run build:app",
+    "build:server": "better-npm-run build:server",
+    "clean": "rimraf dist",
+    "flow": "flow; test $? -eq 0 -o $? -eq 2",
+    "test": "better-npm-run test",
+    "test:watch": "npm run test -- --watch",
+    "schema": "better-npm-run schema",
+    "serve": "npm run schema && npm run build && node dist/server",
+    "spec": "mocha './tests/**/*.spec.js' --opts 'tests/mocha.opts'",
+    "spec:watch": "npm run spec -- --watch",
+    "watch": "npm run schema && better-npm-run watch"
+  },
+  "betterScripts": {
+    "build:app": {
+      "command": "node bin/run",
+      "env": {
+        "NODE_ENV": "production",
+        "RUN_TASK": "compile",
+        "DEBUG": "app:*"
+      }
+    },
+    "build:server": {
+      "command": "babel src/server -d dist/server",
+      "env": {
+        "NODE_ENV": "production",
+        "DEBUG": "app:*"
+      }
+    },
+    "dev": {
+      "command": "nodemon --watch src build/tasks/watch.js --exec babel-node",
+      "env": {
+        "NODE_ENV": "development",
+        "RUN_TASK": "watch",
+        "DEBUG": "app:*"
+      }
+    },
+    "test": {
+      "command": "babel-node ./node_modules/karma/bin/karma start build/karma.conf",
+      "env": {
+        "NODE_ENV": "test",
+        "DEBUG": "app:*"
+      }
+    },
+    "schema": {
+      "command": "node bin/run",
+      "env": {
+        "NODE_ENV": "development",
+        "RUN_TASK": "schema",
+        "DEBUG": "app:*"
+      }
+    },
+    "watch": {
+      "command": "nodemon build/tasks/watch.js --exec babel-node",
+      "env": {
+        "NODE_ENV": "development",
+        "DEBUG": "app:*"
+      }
+    }
+  },
+  "keywords": [
+    "Relay",
+    "GraphQL",
+    "ES2015",
+    "ES2016",
+    "Webpack"
+  ],
+  "author": "Pepeye",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.10.1",
+    "babel-core": "^6.9.1",
+    "babel-eslint": "^6.0.4",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-react-transform": "^2.0.2",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.5.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "babel-relay-plugin": "^0.9.0",
+    "better-npm-run": "0.0.8",
+    "chai": "^3.5.0",
+    "chai-as-promised": "^5.3.0",
+    "chai-enzyme": "^0.5.0",
+    "codecov": "^1.0.1",
+    "css-loader": "^0.23.1",
+    "debug": "^2.2.0",
+    "enzyme": "^2.3.0",
+    "eslint": "^2.12.0",
+    "eslint-config-standard": "^5.3.1",
+    "eslint-config-standard-react": "^2.4.0",
+    "eslint-loader": "^1.3.0",
+    "eslint-plugin-promise": "^1.3.2",
+    "eslint-plugin-react": "^5.1.1",
+    "eslint-plugin-standard": "^1.3.2",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.8.5",
+    "flow-bin": "^0.27.0",
+    "fs-extra": "^0.30.0",
+    "html-webpack-plugin": "^2.21.0",
+    "isparta-loader": "^2.0.0",
+    "json-loader": "^0.5.4",
+    "karma": "^0.13.22",
+    "karma-coverage": "^1.0.0",
+    "karma-mocha": "^1.0.1",
+    "karma-mocha-reporter": "^2.0.4",
+    "karma-phantomjs-launcher": "^1.0.0",
+    "karma-webpack-with-fast-source-maps": "^1.9.2",
+    "mocha": "^2.5.3",
+    "node-sass": "^3.7.0",
+    "nodemon": "^1.9.2",
+    "phantomjs-prebuilt": "^2.1.7",
+    "postcss-loader": "^0.9.1",
+    "postcss-modules": "^0.5.0",
+    "react-addons-test-utils": "^15.1.0",
+    "react-transform-catch-errors": "^1.0.2",
+    "react-transform-hmr": "^1.0.4",
+    "redbox-react": "^1.2.6",
+    "rimraf": "^2.5.2",
+    "rucksack-css": "^0.8.6",
+    "style-loader": "^0.13.1",
+    "supertest": "^1.2.0",
+    "supertest-as-promised": "^3.1.0",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1"
+  },
+  "dependencies": {
+    "chalk": "^1.1.3",
+    "express": "^4.13.4",
+    "express-graphql": "^0.5.3",
+    "graphql": "^0.6.0",
+    "graphql-relay": "^0.4.2",
+    "morgan": "^1.7.0",
+    "node-uuid": "^1.4.7",
+    "normalize.css": "^4.1.1",
+    "react": "^15.1.0",
+    "react-dom": "^15.1.0",
+    "react-relay": "^0.9.0",
+    "react-router": "^2.4.1",
+    "react-router-relay": "^0.13.2"
+  }
+}

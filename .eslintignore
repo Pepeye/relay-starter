@@ -1,0 +1,6 @@
+bin/**
+coverage/**
+dist/**
+log/**
+node_modules/**
+tmp/**
