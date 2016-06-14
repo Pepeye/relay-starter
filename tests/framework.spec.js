@@ -1,7 +1,7 @@
 import assert from 'assert'
 import { expect, should } from 'chai'
 
-describe('(Framework) Karma Plugins', () => {
+describe('[Framework] Karma Plugins', () => {
   it('Should expose "expect" globally.', () => {
     assert.ok(expect)
   })
