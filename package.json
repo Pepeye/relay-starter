@@ -139,6 +139,7 @@
     "graphql": "^0.6.0",
     "graphql-relay": "^0.4.2",
     "morgan": "^1.7.0",
+    "neo4j-driver": "^1.0.2",
     "node-uuid": "^1.4.7",
     "normalize.css": "^4.1.1",
     "react": "^15.1.0",

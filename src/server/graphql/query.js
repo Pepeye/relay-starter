@@ -1,3 +1,4 @@
+console.log('query.js')
 import { GraphQLObjectType, GraphQLSchema } from 'graphql'
 import {
   fromGlobalId,
@@ -5,22 +6,21 @@ import {
   nodeDefinitions
 } from 'graphql-relay'
 
-// import { Movie } from './modules/movie'
+import { Movie, GraphQLMovie, GraphQLMovieAPI } from './modules/movie'
 
 class Viewer {}
 let viewer = new Viewer()
 
 // R E L A Y   N O D E
 
-export let { nodeInterface, nodeField } = nodeDefinitions(
+export const { nodeInterface, nodeField } = nodeDefinitions(
   (globalId) => {
-    // let { type, id } = fromGlobalId(globalId)
-    let { type } = fromGlobalId(globalId)
+    let { type, id } = fromGlobalId(globalId)
     switch (type) {
       case 'Viewer':
         return viewer
-      // case 'Movie':
-      //   return Movie.fetch(id)
+      case 'Movie':
+        return Movie.fetch(id)
       default:
         return null
     }
@@ -29,7 +29,7 @@ export let { nodeInterface, nodeField } = nodeDefinitions(
     if (obj instanceof Viewer) {
       return GraphQLViewer
     } else if (obj.labels) {
-      // if (obj.labels.indexOf('Movie') !== -1) return GraphQLAccount
+      if (obj.labels.indexOf('Movie') !== -1) return GraphQLMovie
     }
     return null
   }
@@ -38,7 +38,7 @@ export let { nodeInterface, nodeField } = nodeDefinitions(
 // V I E W E R
 
 let rootFields = {
-  // ...movieAPI
+  ...GraphQLMovieAPI
 }
 
 let GraphQLViewer = new GraphQLObjectType({
@@ -47,7 +47,7 @@ let GraphQLViewer = new GraphQLObjectType({
     id: globalIdField('Viewer'),
     ...rootFields
   }),
-  interfaces: [nodeInterface]
+  interfaces: [ nodeInterface ]
 })
 
 let query = new GraphQLObjectType({
