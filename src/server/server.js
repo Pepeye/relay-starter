@@ -32,13 +32,13 @@ debug('finished configuring server middleware')
 */
 app.use('/graphql', graphqlHTTP(request => ({
   schema,
-  graphiql: process.env.NODE_ENV !== 'production'
-  // rootValue: {
-  //   domain: request.hostname,
-  //   locale: request.cookies.locale || 'en',
-  //   user: request.user,
-  //   loaders: loaders()
-  // }
+  graphiql: process.env.NODE_ENV !== 'production',
+  rootValue: {
+    domain: request.hostname,
+    locale: request.cookies.locale || 'en',
+    // user: request.user,
+    loaders: loaders()
+  }
 })))
 
 /**
