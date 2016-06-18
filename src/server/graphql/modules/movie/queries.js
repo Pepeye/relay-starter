@@ -18,7 +18,7 @@ export default {
     args: {
       uuid: { type: new GraphQLNonNull(GraphQLString) }
     },
-    resolve: (root, { uuid }) => Movie.find(uuid)
+    resolve: (root, { uuid }, { loaders }) => loaders.Movie.load(uuid)
   },
 
   movies: {

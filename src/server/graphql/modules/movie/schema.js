@@ -1,3 +1,4 @@
+console.log('movies.schema')
 import {
   GraphQLInt,
   GraphQLFloat,
@@ -11,14 +12,13 @@ import {
 } from 'graphql-relay'
 
 import { GraphQLCommonNodeFields } from '../../interfaces'
-import { nodeInterface } from '../../query'
+import { nodeInterface, registerType } from '../../definitions/node'
 
-let GraphQLMovie = new GraphQLObjectType({
+export const GraphQLMovie = registerType(new GraphQLObjectType({
   name: 'Movie',
   description: 'Movie resource',
   fields: () => ({
-    // id: globalIdField('School', obj => obj.id)
-    id: globalIdField('Movie', obj => obj.id),
+    id: globalIdField('Movie', obj => obj.uuid),
     ...GraphQLCommonNodeFields,
     title: { type: GraphQLString, description: 'Movie title' },
     description: { type: GraphQLString, description: 'Movie description' },
@@ -35,6 +35,6 @@ let GraphQLMovie = new GraphQLObjectType({
     version: { type: GraphQLInt, description: 'Data version number' }
   }),
   interfaces: [ nodeInterface ]
-})
+}))
 
 export const { connectionType: GraphQLMovieConnection } = connectionDefinitions({nodeType: GraphQLMovie})

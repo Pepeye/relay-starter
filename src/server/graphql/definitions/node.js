@@ -15,24 +15,11 @@ export function registerType (type: Object) {
 
 // R E L A Y   N O D E
 
-// export const { nodeInterface, nodeField } = nodeDefinitions(
-//   (globalId) => {
-//     let { type, id } = fromGlobalId(globalId)
-//     switch (type) {
-//       case 'Viewer':
-//         return viewer
-//       case 'Movie':
-//         return Movie.fetch(id)
-//       default:
-//         return null
-//     }
-//   },
-//   (obj) => {
-//     if (obj instanceof Viewer) {
-//       return GraphQLViewer
-//     } else if (obj.labels) {
-//       if (obj.labels.indexOf('Movie') !== -1) return GraphQLMovie
-//     }
-//     return null
-//   }
-// )
+export const { nodeInterface, nodeField } = nodeDefinitions(
+  (globalId, { loaders }) => {
+    let { type, id } = fromGlobalId(globalId)
+    const loader = loaders[type]
+    return loader.load(id) || null
+  },
+  (obj) => GraphQLTypes[obj.constructor.name] || null
+)
