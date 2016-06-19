@@ -10,16 +10,19 @@ export function registerType (type: Object) {
   return type
 }
 
-// class Viewer {}
-// let viewer = new Viewer()
-
 // R E L A Y   N O D E
 
 export const { nodeInterface, nodeField } = nodeDefinitions(
-  (globalId, { loaders }) => {
+  async (globalId, context) => {
     let { type, id } = fromGlobalId(globalId)
-    const loader = loaders[type]
-    return loader.load(id) || null
+    console.dir({ context }, {colors: true, depth: Infinity})
+    let loader = context.loaders[type]
+    console.dir({ GraphQLTypes }, {colors: true})
+    return (loader & loader.load(id)) || null
   },
-  (obj) => GraphQLTypes[obj.constructor.name] || null
+  function resolveGraphQLTypeFromObject (obj) {
+    console.log('node.obj')
+    console.dir({obj}, {colors: true, depth: Infinity})
+    return GraphQLTypes[obj.constructor.name] || null
+  }
 )

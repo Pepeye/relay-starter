@@ -5,7 +5,6 @@ import bodyParser from 'body-parser'
 import options from './lib/options'
 import _debug from 'debug'
 import schema from './graphql/schema'
-import loaders from 'graphql/loaders'
 
 let paths = options.paths
 
@@ -33,14 +32,7 @@ debug('finished configuring server middleware')
 */
 app.use('/graphql', graphqlHTTP(request => ({
   schema,
-  context: { loaders: loaders() },
   graphiql: process.env.NODE_ENV !== 'production'
-  // rootValue: {
-  //   domain: request.hostname,
-  //   locale: request.cookies.locale || 'en',
-  //   user: request.user,
-  //   loaders: loaders
-  // }
 })))
 
 /**

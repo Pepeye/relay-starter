@@ -8,6 +8,7 @@ import config from '../config'
 import chalk from 'chalk'
 // import _debug from 'debug'
 import schema from './../../src/server/graphql/schema'
+import loaders from './../../src/server/graphql/loaders'
 import webpackConfig from '../webpack.config'
 
 const api = express()
@@ -24,7 +25,15 @@ api.use(bodyParser.json())
 */
 api.use('/graphql', graphqlHTTP(request => ({
   schema,
-  graphiql: process.env.NODE_ENV !== 'production'
+  graphiql: process.env.NODE_ENV !== 'production',
+  formatError: error => ({
+    message: error.message,
+    locations: error.locations,
+    stack: error.stack
+  }),
+  context: {
+    loaders: loaders()
+  }
 })))
 
 /**
