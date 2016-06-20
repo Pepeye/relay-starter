@@ -155,27 +155,6 @@ export default class Node {
     return NEON(result)
   }
 
-  static async findOne (labels = []) {
-    let query = `
-      MATCH (n${labelTypes(labels)})
-      RETURN n
-      LIMIT 1
-    `
-    let result = await session.run(query)
-    return NEON(result)
-  }
-
-  static async findByEmail (email) {
-    let query = `
-      MATCH (n {email: '${email}' })
-      RETURN n
-      LIMIT 1
-    `
-
-    let result = await session.run(query)
-    return NEON(result)
-  }
-
   static async fetch (uuid) {
     let query = `
       MATCH (n {uuid: '${uuid}' })
