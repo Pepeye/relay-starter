@@ -51,6 +51,10 @@ npm install
 npm start
 ```
 
+Once running visit:
+* http://localhost:3000 - running app
+* http://localhost:4000/graphql - proxy to graphiql interface to test graphql queries
+
 Stack
 --------
 * [React](https://github.com/facebook/react)
