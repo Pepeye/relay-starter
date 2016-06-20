@@ -80,8 +80,6 @@ class Logger extends React.Component {
         theme={options(theme)}
         isLightTheme={this.props.isLightTheme}
         getItemString={getItemString}
-        labelRenderer={raw => (<strong>{raw}</strong>)}
-        valueRenderer={raw => (<em>{raw}</em>)}
         sortObjectKeys
       />
     )

@@ -11,7 +11,6 @@ export default Relay.createContainer(Movie, {
       fragment on Viewer {
         movie(uuid: $uuid) {
           id
-          id
           ... on Movie {
             labels
             uuid

@@ -30,7 +30,7 @@ class MovieList extends React.Component {
       <ul>
         {content}
         <br />
-        <button onClick={() => this.loadMore()}>Load More</button>
+        {/* <button onClick={() => this.loadMore()}>Load More</button> */}
       </ul>
     )
   }

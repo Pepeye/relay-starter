@@ -7,7 +7,7 @@ import { MovieList, Movie } from '../components/Movies'
 export default (
   <Route path='/' component={AppComponent} >
     <IndexRoute component={MovieList} queries={ViewerQuery} />
-    <Route path='students'>
+    <Route path='movies'>
       <IndexRoute component={MovieList} queries={ViewerQuery} />
       <Route path=':uuid' component={Movie} queries={ViewerQuery} />
     </Route>
