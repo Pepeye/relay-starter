@@ -8,25 +8,25 @@ import {
   connectionFromPromisedArray
 } from 'graphql-relay'
 
-import { GraphQLActor, GraphQLActorConnection } from './schema'
-import Actor from './model'
+import { GraphQLDirector, GraphQLDirectorConnection } from './schema'
+import Director from './model'
 
 export default {
-  actor: {
+  director: {
     description: 'find a actor by uuid',
-    type: GraphQLActor,
+    type: GraphQLDirector,
     args: {
       uuid: { type: new GraphQLNonNull(GraphQLString) }
     },
-    resolve: (root, { uuid }, { loaders }) => loaders.Actor.load(uuid)
+    resolve: (root, { uuid }, { loaders }) => loaders.Director.load(uuid)
   },
 
-  actors: {
+  directors: {
     description: 'a list of actors',
-    type: GraphQLActorConnection,
+    type: GraphQLDirectorConnection,
     args: connectionArgs,
     resolve: (root, args) => connectionFromPromisedArray(
-      Actor.all(['Actor']),
+      Director.all(['Director']),
       args
     )
   }
