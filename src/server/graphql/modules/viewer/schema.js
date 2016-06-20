@@ -3,8 +3,10 @@ import { globalIdField } from 'graphql-relay'
 import { nodeInterface, registerType } from '../../definitions/node'
 
 import { GraphQLMovieAPI } from '../movie'
+import { GraphQLActorAPI } from '../actor'
 
 let rootFields = {
+  ...GraphQLActorAPI,
   ...GraphQLMovieAPI
 }
 

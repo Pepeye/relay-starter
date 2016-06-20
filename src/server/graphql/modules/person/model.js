@@ -1,5 +1,5 @@
 // import { session } from '../../../lib/db'
-import { Node } from '../models'
+import { Node } from '../graph'
 // import { NEOA } from '../helpers'
 
 class Person extends Node {
