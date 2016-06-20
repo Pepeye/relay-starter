@@ -1,4 +1,3 @@
-console.log('root.schema')
 import { GraphQLSchema } from 'graphql'
 
 import query from './query'

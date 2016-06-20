@@ -14,8 +14,8 @@ export default class Node {
    */
   constructor (props) {
     // let { labels, properties } = props
-    let { id, labels, ...properties } = props
-    this.id = id || null
+    let { labels, ...properties } = props
+    this.id = (props.id || props.identity.low) || null
     this.labels = labels || []
     this.properties = {
       uuid: properties.uuid || UUID.v4(),
@@ -26,10 +26,6 @@ export default class Node {
 
   get types () {
     return this._types
-  }
-
-  get id () {
-    return this.id
   }
 
   get uuid () {
@@ -189,6 +185,18 @@ export default class Node {
 
     let result = await session.run(query)
     return new this(NEON(result))
+  }
+
+  static async load (uuids) {
+    let params = { uuids }
+    let query = `
+      MATCH (n)
+      WHERE n.uuid IN { uuids }
+      RETURN n
+    `
+
+    let result = await session.run(query, params)
+    return NEOA(result)
   }
 
   static async query (qry) {

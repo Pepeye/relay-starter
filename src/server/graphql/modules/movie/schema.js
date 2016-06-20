@@ -1,4 +1,3 @@
-console.log('movies.schema')
 import {
   GraphQLInt,
   GraphQLFloat,

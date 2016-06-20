@@ -1,4 +1,3 @@
-console.log('root.query')
 import { GraphQLObjectType } from 'graphql'
 import { nodeField } from './definitions/node'
 import { GraphQLViewer } from './modules/viewer'

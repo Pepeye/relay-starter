@@ -78,7 +78,6 @@ export function NEOA ({records, ...rest}, {node = 'n', flat = true} = {}) {
     if (records.length > 0) {
       let output = records.map(({keys, _fields}) => {
         return _fields.reduce((result, field, index) => {
-          // result[keys[index]] = NEONODE(field, flat)
           if (Object.keys(keys).length > 1) {
             result[keys[index]] = FLATNODE(field, flat)
             return result
@@ -105,7 +104,6 @@ export function NEON ({records, ...rest}, {node = 'n', flat = true} = {}) {
     if (records.length > 0) {
       let output = records.map(({keys, _fields}) => {
         return _fields.reduce((result, field, index) => {
-          // result[keys[index]] = NEONODE(field, flat)
           if (Object.keys(keys).length > 1) {
             result[keys[index]] = FLATNODE(field, flat)
             return result
@@ -116,6 +114,32 @@ export function NEON ({records, ...rest}, {node = 'n', flat = true} = {}) {
         }, {})
       })
       return output[0]
+    } else {
+      // flag empty results
+      return records
+    }
+  }
+}
+
+/**
+ * Returns single record of node(s) OR multiple record of node(s)
+ */
+export function NEOX ({records, ...rest}, {flat = true} = {}) {
+  if (Array.isArray(records) && records !== 'undefined') {
+    /* if results are found */
+    if (records.length > 0) {
+      let output = records.map(({keys, _fields}) => {
+        return _fields.reduce((result, field, index) => {
+          if (Object.keys(keys).length > 1) {
+            result[keys[index]] = FLATNODE(field, flat)
+            return result
+          } else {
+            return FLATNODE(field, flat)
+          }
+          // return result
+        }, {})
+      })
+      return (output.length === 1) ? output[0] : output
     } else {
       // flag empty results
       return records

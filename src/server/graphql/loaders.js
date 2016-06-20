@@ -1,9 +1,8 @@
-console.log('root.loaders')
 import DataLoader from 'dataloader'
 // import Batch from './modules/batch'
 import { session } from '../lib/db'
-import { NEOA } from './modules/helpers'
-// import { Loader as movies } from './modules/movie'
+import { NEOX } from './modules/helpers'
+import { Movie } from './modules/movie'
 
 // function batchFn (keys) {
 //   return new Promise((resolve, reject) => {
@@ -37,21 +36,20 @@ import { NEOA } from './modules/helpers'
 //           })
 // }
 
-const batchFn = async (keys) => {
-  let params = keys
+export const batchFn = async (uuids: string[]) => {
+  let params = { uuids }
   let query = `
     MATCH (n)
-    WHERE n.uuid IN { keys }
+    WHERE n.uuid IN { uuids }
     RETURN n
   `
-  console.log('[keys]', keys)
-  console.log(query)
+
   let result = await session.run(query, params)
-  return NEOA(result)
+  return NEOX(result)
 }
 
 export default function loaders () {
   return {
-    Movie: new DataLoader(keys => batchFn(keys))
+    Movie: new DataLoader(uuids => Movie.load(uuids))
   }
 }
