@@ -27,6 +27,31 @@ type ActorEdge {
   cursor: String!
 }
 
+type Director implements Node, Person {
+  id: ID!
+  labels: [String]
+  uuid: String
+  createdAt: Float
+  updatedAt: Float
+  name: String
+  biography: String
+  birthplace: String
+  birthday: Float
+  lastModified: Float
+  profileImageUrl: String
+  version: Int
+}
+
+type DirectorConnection {
+  pageInfo: PageInfo!
+  edges: [DirectorEdge]
+}
+
+type DirectorEdge {
+  node: Director
+  cursor: String!
+}
+
 type Movie implements Node {
   id: ID!
   labels: [String]
@@ -92,6 +117,8 @@ type Viewer implements Node {
   id: ID!
   actor(uuid: String!): Actor
   actors(after: String, first: Int, before: String, last: Int): ActorConnection
+  director(uuid: String!): Director
+  directors(after: String, first: Int, before: String, last: Int): DirectorConnection
   movie(uuid: String!): Movie
   movies(after: String, first: Int, before: String, last: Int): MovieConnection
 }
