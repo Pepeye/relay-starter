@@ -4,6 +4,7 @@ import logger from 'morgan'
 import bodyParser from 'body-parser'
 import options from './lib/options'
 import _debug from 'debug'
+import loaders from './../../src/server/graphql/loaders'
 import schema from './graphql/schema'
 
 let paths = options.paths
@@ -32,7 +33,10 @@ debug('finished configuring server middleware')
 */
 app.use('/graphql', graphqlHTTP(request => ({
   schema,
-  graphiql: process.env.NODE_ENV !== 'production'
+  graphiql: process.env.NODE_ENV !== 'production',
+  context: {
+    loaders: loaders()
+  }
 })))
 
 /**

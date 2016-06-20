@@ -1,3 +1,5 @@
+// TODO: schema backup - single file style
+
 import {
   GraphQLInt,
   GraphQLFloat,
@@ -54,7 +56,7 @@ let GraphQLMovie = new GraphQLObjectType({
   description: 'Movie resource',
   fields: () => ({
     // id: globalIdField('School', obj => obj.id)
-    id: globalIdField('Movie', obj => obj.id),
+    id: globalIdField('Movie', obj => obj.uuid),
     ...GraphQLCommonNodeFields,
     title: { type: GraphQLString, description: 'Movie title' },
     description: { type: GraphQLString, description: 'Movie description' },
