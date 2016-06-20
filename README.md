@@ -18,7 +18,7 @@ example `.env` file
 ```sh
 NODE_ENV=development
 NEO4J_USER=neo4j
-NEO4J_PASS=neo4j
+NEO4J_PASS=neopass
 DEBUG=api:*
 ```
 
@@ -30,6 +30,25 @@ To run tests:
 
 ```sh
 npm test
+```
+
+Database
+--------
+Sample database is the Neo4j Movie database found [here](http://neo4j.com/developer/example-data/). This starter kit is using Neo4j 3.0 but feel free to swap in your own database.
+
+Install
+-------
+
+Setup you Neo4j database as per above running the Movie sample then the following instructions
+
+```sh
+#clone the repo
+git clone https://github.com/Pepeye/relay-starter.git
+cd relay-starter
+npm install
+
+# first ensure Neo4j is running (port 7474), then:
+npm start
 ```
 
 Stack
@@ -66,7 +85,6 @@ TODO
 - [x] Introduce Relay flavoured (connections/nodes) GraphQL
 - [x] Setup karma test runner with coverage and mocha for studentsPerClass
 - [ ] Introduce stubs
-- [ ] Move GraphQL code back into previous modules/models
-- [ ] Project structure is WIP (might change)
+- [x] Move GraphQL code back into previous modules/models
 - [ ] Add custom GraphQL scalar types
 - [ ] Add typing with flow
