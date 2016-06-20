@@ -3,7 +3,7 @@ import {
   nodeDefinitions
 } from 'graphql-relay'
 
-const GraphQLTypes = {}
+export const GraphQLTypes = {}
 
 export function registerType (type) {
   GraphQLTypes[type.name] = type
