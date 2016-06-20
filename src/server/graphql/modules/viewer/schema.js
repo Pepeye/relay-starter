@@ -2,11 +2,13 @@ import { GraphQLObjectType } from 'graphql'
 import { globalIdField } from 'graphql-relay'
 import { nodeInterface, registerType } from '../../definitions/node'
 
-import { GraphQLMovieAPI } from '../movie'
 import { GraphQLActorAPI } from '../actor'
+import { GraphQLDirectorAPI } from '../director'
+import { GraphQLMovieAPI } from '../movie'
 
 let rootFields = {
   ...GraphQLActorAPI,
+  ...GraphQLDirectorAPI,
   ...GraphQLMovieAPI
 }
 
