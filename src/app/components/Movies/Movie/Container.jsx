@@ -20,6 +20,22 @@ export default Relay.createContainer(Movie, {
             imdbId
             releaseDate
             runtime
+            actors (first: 20) {
+              cast: edges {
+                actor: node {
+                  id
+                  uuid
+                  labels
+                  name
+                }
+              }
+            }
+            directors {
+              id
+              uuid
+              labels
+              name
+            }
           }
         }
       }

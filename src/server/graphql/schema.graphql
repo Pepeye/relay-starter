@@ -1,0 +1,126 @@
+schema {
+  query: Query
+}
+
+type Actor implements Node, Person {
+  id: ID!
+  labels: [String]
+  uuid: String
+  createdAt: Float
+  updatedAt: Float
+  name: String
+  biography: String
+  birthplace: String
+  birthday: Float
+  lastModified: Float
+  profileImageUrl: String
+  version: Int
+}
+
+type ActorConnection {
+  pageInfo: PageInfo!
+  edges: [ActorEdge]
+}
+
+type ActorEdge {
+  node: Actor
+  cursor: String!
+}
+
+type Director implements Node, Person {
+  id: ID!
+  labels: [String]
+  uuid: String
+  createdAt: Float
+  updatedAt: Float
+  name: String
+  biography: String
+  birthplace: String
+  birthday: Float
+  lastModified: Float
+  profileImageUrl: String
+  version: Int
+}
+
+type DirectorConnection {
+  pageInfo: PageInfo!
+  edges: [DirectorEdge]
+}
+
+type DirectorEdge {
+  node: Director
+  cursor: String!
+}
+
+type Movie implements Node {
+  id: ID!
+  labels: [String]
+  uuid: String
+  createdAt: Float
+  updatedAt: Float
+  title: String
+  description: String
+  language: String
+  imageUrl: String
+  trailer: String
+  genre: String
+  tagline: String
+  homepage: String
+  imdbId: String
+  studio: String
+  releaseDate: Float
+  runtime: Int
+  version: Int
+  actors(after: String, first: Int, before: String, last: Int): ActorConnection
+  directors: [Director]
+}
+
+type MovieConnection {
+  pageInfo: PageInfo!
+  edges: [MovieEdge]
+}
+
+type MovieEdge {
+  node: Movie
+  cursor: String!
+}
+
+interface Node {
+  id: ID!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+interface Person {
+  labels: [String]
+  uuid: String
+  createdAt: Float
+  updatedAt: Float
+  name: String
+  biography: String
+  birthplace: String
+  birthday: Float
+  lastModified: Float
+  profileImageUrl: String
+  version: Int
+}
+
+type Query {
+  viewer: Viewer
+  node(id: ID!): Node
+}
+
+type Viewer implements Node {
+  id: ID!
+  actor(uuid: String!): Actor
+  actors(after: String, first: Int, before: String, last: Int): ActorConnection
+  director(uuid: String!): Director
+  directors(after: String, first: Int, before: String, last: Int): DirectorConnection
+  movie(uuid: String!): Movie
+  movies(after: String, first: Int, before: String, last: Int): MovieConnection
+}
