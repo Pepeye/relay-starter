@@ -1,0 +1,32 @@
+{
+  viewer {
+    movies (first: 1) {
+      edges {
+        node {
+          id
+          labels
+          uuid
+          title
+          actors {
+            cast: edges {
+              actor: node {
+                id
+                ...personDetails
+              }
+            }
+          }
+          directors {
+            id
+            ...personDetails
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment personDetails on Person {
+  uuid
+  labels
+  name
+}

@@ -7,14 +7,16 @@ import {
 } from 'graphql'
 
 import {
+  connectionArgs,
   connectionDefinitions,
+  connectionFromPromisedArray,
   globalIdField
 } from 'graphql-relay'
 
 import { GraphQLCommonNodeFields } from '../../interfaces'
 import { nodeInterface, registerType } from '../../definitions/node'
 import Movie from './model'
-import { GraphQLActor } from '../actor'
+import { GraphQLActorConnection } from '../actor'
 import { GraphQLDirector } from '../director'
 
 export const GraphQLMovie = registerType(new GraphQLObjectType({
@@ -37,9 +39,10 @@ export const GraphQLMovie = registerType(new GraphQLObjectType({
     runtime: { type: GraphQLInt, description: 'Movie runtime in minutes' },
     version: { type: GraphQLInt, description: 'Data version number' },
     actors: {
-      type: new GraphQLList(GraphQLActor),
+      type: GraphQLActorConnection,
       description: 'Movie cast - actors',
-      resolve: (data, _, {loaders}) => (new Movie(data)).actors()
+      args: connectionArgs,
+      resolve: (data, args) => connectionFromPromisedArray((new Movie(data)).actors(), args)
     },
     directors: {
       type: new GraphQLList(GraphQLDirector),

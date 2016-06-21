@@ -71,7 +71,8 @@ type Movie implements Node {
   releaseDate: Float
   runtime: Int
   version: Int
-  actors: [Actor]
+  actors(after: String, first: Int, before: String, last: Int): ActorConnection
+  directors: [Director]
 }
 
 type MovieConnection {
