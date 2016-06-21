@@ -20,6 +20,16 @@ class Movie extends Node {
     return NEOA(result)
   }
 
+  async directors () {
+    let params = { uuid: this.uuid }
+    let query = `
+      MATCH (m:Movie {uuid: { uuid } })<-[:DIRECTED]-(d:Director)
+      RETURN d
+    `
+    let result = await session.run(query, params)
+    return NEOA(result)
+  }
+
 }
 
 export default Movie

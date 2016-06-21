@@ -15,6 +15,7 @@ import { GraphQLCommonNodeFields } from '../../interfaces'
 import { nodeInterface, registerType } from '../../definitions/node'
 import Movie from './model'
 import { GraphQLActor } from '../actor'
+import { GraphQLDirector } from '../director'
 
 export const GraphQLMovie = registerType(new GraphQLObjectType({
   name: 'Movie',
@@ -39,6 +40,11 @@ export const GraphQLMovie = registerType(new GraphQLObjectType({
       type: new GraphQLList(GraphQLActor),
       description: 'Movie cast - actors',
       resolve: (data, _, {loaders}) => (new Movie(data)).actors()
+    },
+    directors: {
+      type: new GraphQLList(GraphQLDirector),
+      description: 'Movie cast - actors',
+      resolve: (data, _, {loaders}) => (new Movie(data)).directors()
     }
   }),
   interfaces: [ nodeInterface ]
