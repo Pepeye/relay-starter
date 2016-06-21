@@ -1,0 +1,49 @@
+{
+  viewer{
+    actors (first: 3) {
+      edges {
+        node {
+          id
+          labels
+          ...details
+        }
+      }
+    }
+    directors(first: 3) {
+      edges {
+        node {
+          id
+          ...details
+        }
+      }
+    }
+    movies (first: 3) {
+      edges {
+        node {
+          id
+          labels
+          uuid
+          title
+        }
+      }
+    }
+  }
+  sam: node(id: "QWN0b3I6ODEyNzQyNTAtMzJkNy0xMWU2LWE4MmQtY2U4NjY4MDQ5NjAx") {
+    id
+    __typename
+    ...details
+  }
+  james: node(id: "RGlyZWN0b3I6ODEyNzFiNDEtMzJkNy0xMWU2LWE4MmQtY2U4NjY4MDQ5NjAx") {
+    id
+    __typename
+    ...details
+  }
+}
+
+fragment details on Person {
+  uuid
+  name
+  birthday
+  biography
+  birthplace
+}

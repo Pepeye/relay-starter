@@ -1,6 +1,7 @@
 import {
   GraphQLInt,
   GraphQLFloat,
+  GraphQLList,
   GraphQLObjectType,
   GraphQLString
 } from 'graphql'
@@ -12,6 +13,8 @@ import {
 
 import { GraphQLCommonNodeFields } from '../../interfaces'
 import { nodeInterface, registerType } from '../../definitions/node'
+import Movie from './model'
+import { GraphQLActor } from '../actor'
 
 export const GraphQLMovie = registerType(new GraphQLObjectType({
   name: 'Movie',
@@ -31,7 +34,12 @@ export const GraphQLMovie = registerType(new GraphQLObjectType({
     studio: { type: GraphQLString, description: 'Movie production studio' },
     releaseDate: { type: GraphQLFloat, description: 'Movie release date' },
     runtime: { type: GraphQLInt, description: 'Movie runtime in minutes' },
-    version: { type: GraphQLInt, description: 'Data version number' }
+    version: { type: GraphQLInt, description: 'Data version number' },
+    actors: {
+      type: new GraphQLList(GraphQLActor),
+      description: 'Movie cast - actors',
+      resolve: (data, _, {loaders}) => (new Movie(data)).actors()
+    }
   }),
   interfaces: [ nodeInterface ]
 }))
