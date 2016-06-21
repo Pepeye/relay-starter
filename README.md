@@ -87,8 +87,9 @@ TODO
 --------
 
 - [x] Introduce Relay flavoured (connections/nodes) GraphQL
-- [x] Setup karma test runner with coverage and mocha for studentsPerClass
-- [ ] Introduce stubs
 - [x] Move GraphQL code back into previous modules/models
+- [ ] Add example mutation
 - [ ] Add custom GraphQL scalar types
-- [ ] Add typing with flow
+- [x] Add typing with flow, example typed test
+- [x] Setup karma test runner with coverage and mocha for studentsPerClass
+- [ ] Testing: introduce stubs
