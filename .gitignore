@@ -4,3 +4,5 @@ coverage
 *.DS_Store
 *.log
 npm-debug.log
+**graphql/schema.graphql
+**graphql/schema.json
