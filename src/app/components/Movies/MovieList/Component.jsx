@@ -12,7 +12,7 @@ class MovieList extends React.Component {
 
     // update variables
     this.props.relay.setVariables({
-      count: count + 10
+      count: count + 20
     })
   }
 

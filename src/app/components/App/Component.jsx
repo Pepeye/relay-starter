@@ -1,6 +1,6 @@
 import React from 'react'
 import $ from 'jquery'
-// import './app.scss'
+import './app.scss'
 import { Link } from 'react-router'
 
 class App extends React.Component {

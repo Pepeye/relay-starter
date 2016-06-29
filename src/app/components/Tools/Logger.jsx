@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import JSONTree from 'react-json-tree'
-import { monokai as theme } from './Themes'
+import { google as theme } from './Themes'
 
 const identity = value => value
 
@@ -77,10 +77,11 @@ class Logger extends React.Component {
   valueRenderer = (raw) => (<em>{raw}</em>)
 
   render () {
+    console.log(theme)
     return (
       <JSONTree
         data={this.props.data}
-        theme={options(theme)}
+        theme={theme}
         isLightTheme={this.props.isLightTheme}
         getItemString={getItemString}
         labelRenderer={this.labelRenderer}

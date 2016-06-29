@@ -6,7 +6,6 @@ export {
   flat,
   monokai,
   ocean,
-  goolgle
+  goolgle,
+  options
 } from './Themes'
-
-export { options } from './Themes'

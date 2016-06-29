@@ -1,6 +1,6 @@
 import React from 'react'
 import JSONTree from 'react-json-tree'
-import { ocean as theme, options } from '../../Tools'
+import { flat as theme, options } from '../../Tools'
 
 class Movie extends React.Component {
   static propTypes = {
