@@ -1,7 +1,9 @@
 relay-starter: Relay/GraphQL Starter
 ===========================
 
-GraphQL server using node / express and written in ES6 (ES2015) and ES7 (ES2016)
+GraphQL server using node / express and written in ES6 (ES2015) and ES7 (ES2016).
+
+I built this starter because there are limited examples I've found of Relay flavoured GraphQL backends built in a modular manner. Most examples are of Todo apps with simple one file schemas. I was getting into undefined nodes OR cyclical node errors until i discovered some interesting approaches here: [Abstract type resolution for node definitions](https://github.com/graphql/graphql-relay-js/issues/25).
 
 Getting Started
 --------
